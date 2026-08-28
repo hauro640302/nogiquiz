@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+  <body>
+
+    <th:block th:fragment="template (method, action, value, wide)">
+      <input th:if="${method == 'post'}" 
+             type="hidden" 
+             th:name="${_csrf.parameterName}"
+             th:value="${_csrf.token}" />
+      <input type="submit" 
+             th:formmethod="${method}" 
+             th:formaction="${action}"
+             th:value="${value}" 
+             class="btn btn-outline-light btn-sm bg-nogizaka"
+             th:classappend="${wide ? 'btn-width' : ''}"
+             style="--bs-btn-focus-color: #ffc107; --bs-btn-hover-color: #ffc107;" />
+    </th:block>
+
+  </body>
+
+</html>

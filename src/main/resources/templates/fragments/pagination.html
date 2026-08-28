@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+  <body>
+    <th:block th:fragment="pagination (url, pageable)">
+      <div th:if="${pageable.totalPages > 0}" class="mt-4">
+
+        <form th:action="@{${url}}" method="post">
+  
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+          <ul class="pagination justify-content-center">
+            
+            <li class="page-item" th:classappend="${pageable.first} ? 'disabled'">
+              <button class="page-link"
+                      th:text="#{pagination.back}"
+                      th:type="${pageable.first} ? 'button' : 'submit'"
+                      th:disabled="${pageable.first}"
+                      th:name="${pageable.first} ? null : 'page'"
+                      th:value="${pageable.first} ? null : ${pageable.number - 1}"
+                      th:aria-label="${pageable.first} ? null : 'Previous'">Prev</button>
+            </li>
+
+            <th:block th:if="${pageable.totalPages > 0}" 
+                      th:each="i : ${#numbers.sequence(0, pageable.totalPages - 1)}">
+              <th:block th:with="isActive=${i == pageable.number}">
+                <li class="page-item" th:classappend="${isActive} ? 'active'">
+                  <button class="page-link"
+                          th:text="${i + 1}"
+                          th:type="${isActive} ? 'button' : 'submit'"
+                          th:disabled="${isActive}"
+                          th:name="${isActive} ? null : 'page'"
+                          th:value="${isActive} ? null : ${i}">N</button>
+                </li>
+              </th:block>
+            </th:block>
+
+            <li class="page-item" th:classappend="${pageable.last} ? 'disabled'">
+              <button class="page-link"
+                      th:text="#{pagination.next}"
+                      th:type="${pageable.last} ? 'button' : 'submit'"
+                      th:disabled="${pageable.last}"
+                      th:name="${pageable.last} ? null : 'page'"
+                      th:value="${pageable.last} ? null : ${pageable.number + 1}"
+                      th:aria-label="${pageable.last} ? null : 'Next'">Next</button>
+            </li>
+            
+          </ul>
+        </form>
+       
+      </div>
+    </th:block>
+  </body>
+
+</html>

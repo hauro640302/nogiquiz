@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-register text-center">
+      <h2 th:text="#{register.title}">Registration</h2>
+
+      <div class="mt-5">
+
+        <form th:object="${playerForm}">
+
+          <div id="error-message" th:if="*{!#strings.isEmpty(message)}">
+            <t6 th:text="*{message}" th:classappend="*{result == false} ? 'text-danger'"></t6>
+          </div>
+
+          <div class="mt-4">
+            <label for="pn" th:text="#{common.name}">Name</label>
+            <input type="text" th:field="*{name}" id="pn" class="form-control login-input"
+              th:errorclass="is-invalid" />
+            <div th:errors="*{name}" class="invalid-feedback"></div>
+          </div>
+
+          <div class="mt-4">
+            <label for="pw" th:text="#{common.password}">Password</label>
+            <input type="password" th:field="*{password}" id="pw" class="form-control login-input"
+              th:errorclass="is-invalid" />
+            <div th:errors="*{password}" class="invalid-feedback"></div>
+          </div>
+
+          <div class="mt-5">
+            <th:block
+              th:replace="~{fragments/nogiButton::template('post', '/login/register', #{register.register}, true)}">
+            </th:block>
+          </div>
+        </form>
+
+      </div>
+
+      <div class="mt-5">
+        <form>
+          <th:block
+            th:replace="~{fragments/nogiButton::template('get', '/login', #{register.back}, true)}">
+          </th:block>
+        </form>
+      </div>
+
+    </div>
+
+    <script>
+      const inputs = document.querySelectorAll('.login-input');
+      const errorMessage = document.getElementById('error-message');
+      inputs.forEach(input => {
+        input.addEventListener('input', () => {
+          if (errorMessage) {
+            errorMessage.style.display = 'none';
+          }
+        });
+      });
+    </script>
+    
+  </body>
+
+</html>

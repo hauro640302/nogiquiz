@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-login text-center">
+      <h2 th:text="#{login.title}"></h2>
+
+      <div class="mt-5" th:object="${playerForm}">
+        <form>
+
+          <div id="error-message" th:if="${hasLoginError}">
+            <div class="text-danger mb-4 text-center">
+              <h5 th:text="#{login.fail}"></h5>
+            </div>
+          </div>
+
+          <div class="">
+            <input type="text" th:field="*{name}" th:placeholder="#{common.name}"
+              class="form-control login-input" />
+          </div>
+          <div class="mt-4">
+            <input type="password" th:field="*{password}" th:placeholder="#{common.password}"
+              class="form-control login-input" />
+          </div>
+
+          <div class="mt-5 text-center">
+            <th:block
+              th:replace="~{fragments/nogiButton::template('post', '/login', #{login.title}, true)}">
+            </th:block>
+          </div>
+        </form>
+      </div>
+
+      <div class="mt-5">
+        <form>
+          <th:block
+            th:replace="~{fragments/nogiButton::template('get', '/login/register', #{register.title}, true)}">
+          </th:block>
+        </form>
+      </div>
+
+    </div>
+
+    <script>
+      const inputs = document.querySelectorAll('.login-input');
+      const errorMessage = document.getElementById('error-message');
+      inputs.forEach(input => {
+        input.addEventListener('input', () => {
+          if (errorMessage) {
+            errorMessage.style.display = 'none';
+          }
+        });
+      });
+    </script>
+
+  </body>
+
+</html>

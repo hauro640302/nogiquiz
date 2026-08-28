@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-menu text-center">
+      <h2 th:text="#{menu.title}">Menu</h2>
+      <div class="mt-5" th:object="${menuForm}">
+
+        <form method="post" th:action="@{/menu/change}" id="change">
+          <!-- カテゴリー -->
+          <div class="btn-group w-100" role="group">
+            <th:block th:each="category, stat: ${categories}">
+              <input type="radio" 
+                     th:value="${category}" 
+                     name="category"
+                     th:id="${'category-' + stat.index}" 
+                     th:checked="${category} == *{category}"
+                     onchange="document.getElementById('change').submit();" 
+                     class="btn-check" />
+              <label th:for="${'category-' + stat.index}"
+                     th:text="${category}" 
+                     class="btn btn-outline-secondary">
+              </label>
+            </th:block>
+          </div>
+          <!-- 卒業生を含めるかどうか -->
+          <div
+            class="form-check form-switch d-flex justify-content-center align-items-center gap-2 p-0 mt-4">
+            <input type="checkbox" 
+                   th:field="*{includingGraduates}" 
+                   id="includingOG"
+                   onchange="document.getElementById('change').submit();" 
+                   class="form-check-input m-0"
+                   style="transform: scale(1.2); margin-right: 4px !important;">
+            <label for="includingOG" 
+                   th:text="#{menu.includingOG}" 
+                   class="form-check-label text-muted" >
+              including graduate
+            </label>
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="mt-5">        
+        <form>
+          <th:block
+            th:replace="~{fragments/nogiButton::template('get', '/quiz', #{menu.start}, true)}">
+          </th:block>
+        </form>
+      </div>
+
+      <div class="mt-5">
+        <div class="text-center">
+          <h4 th:text="#{menu.highscore}">High Scores</h4>
+        </div>
+        <div class="mt-4 text-center">
+          <table class="table table-striped table-bordered table-hover table-sm">
+            <thead class="table-primary">
+              <tr>
+                <th class="th-width" th:text="#{menu.score}">score</th>
+                <th class="th-width" th:text="#{common.name}">name</th>
+                <th class="th-width" th:text="#{menu.playedat}">played at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="score: ${highScores}">
+                <td th:text="${score.score}"></td>
+                <td th:text="${score.name}"></td>
+                <td th:text="${score.playedAt}"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <th:block th:replace="~{fragments/pagination::pagination ('/menu/page', ${pageable})}">
+        </th:block>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>

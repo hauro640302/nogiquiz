@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-error">
+
+      <div class="">
+        <h4 class="text-center" th:text="#{error.title}">Error</h4>
+      </div>
+
+      <div class="mt-5 text-center">
+        <div>
+          <h5 th:text="${status} + ' ' + ${error}"></h5>
+        </div>
+
+        <div class="mt-4">
+          <h5 th:text="${message}"></h5>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-quiz text-center" th:object="${quizForm}">
+      <div>
+        <th:object th:if="not *{hasAnswer}">
+          <h2 th:text="#{quiz.title}">Question</h2>
+        </th:object>
+        <th:object th:if="*{hasAnswer}">
+          <h2 th:text="#{quiz.result(*{score})}">Your Score is ... pts</h2>
+        </th:object>
+      </div>
+
+      <div class="mt-5 text-center">
+        <form>
+          <div>
+            <table class="table table-striped table-bordered">
+              <thead class="table-primary">
+                <tr>
+                  <th class="th-width" th:text="#{quiz.member}">member</th>
+                  <th:block th:each="i : ${#numbers.sequence(1, 4)}">
+                    <th class="th-width" th:text="#{quiz.choice(__${i}__)}">choiceN</th>
+                  </th:block>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="question, i : *{questions}">
+                  <td th:text="${question.memberName}"></td>
+
+                  <td th:each="choice, j : ${question.choices}" class="p-0">
+                    <input type="radio" 
+                           th:field="*{answers[__${i.index}__]}" 
+                           th:value="${choice}"
+                           th:id="'choice-' + ${i.index} + '-' + ${j.index}" 
+                           th:disabled="*{hasAnswer}"
+                           class="btn-check" />
+                    <label th:text="${choice}" 
+                           th:for="'choice-' + ${i.index} + '-' + ${j.index}"
+                           class="btn btn-outline-secondary btn-sm w-100 h-100 border-0 d-flex align-items-center justify-content-center"
+                           th:classappend="${quizForm.hasAnswer && choice == question.correct} ? 'text-danger fw-bold' : 'text-dark'"
+                           style="border-radius: 0; min-height: 38px;">
+                    </label>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <th:object th:if="not *{hasAnswer}">
+            <div class="mt-5 text-center">
+              <th:block
+                th:replace="~{fragments/nogiButton::template('post', '/quiz/answer', #{quiz.scoring}, true)}">
+              </th:block>
+            </div>
+          </th:object>
+
+        </form>
+      </div>
+
+      <th:object th:if="*{hasAnswer}">
+        <div class="mt-5 text-center">
+          <form>
+            <th:block
+              th:replace="~{fragments/nogiButton::template('post', '/quiz/retry', #{quiz.retry}, true)}">
+            </th:block>
+          </form>
+        </div>
+      </th:object>
+
+      <div class="mt-5">
+        <form>
+          <th:block
+            th:replace="~{fragments/nogiButton::template('post', '/quiz/exit', #{quiz.exit}, true)}">
+          </th:block>
+        </form>
+      </div>
+    </div>
+  </body>
+
+</html>

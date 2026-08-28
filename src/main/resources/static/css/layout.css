@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+:root {
+  --nogizaka-purple: #812990;
+  /* 白を混ぜて作った淡い背景色（簡易的なsubtleカラー） */
+  --nogizaka-purple-light: #f5eef7;
+  --nogizaka-purple-medium: #bc8bc4;
+}
+
+/* カスタム背景クラスの作成 */
+.bg-nogizaka {
+  background-color: var(--nogizaka-purple) !important;
+}
+
+.bg-nogizaka-subtle {
+  background-color: var(--nogizaka-purple-light) !important;
+}
+
+.bg-nogizaka-medium {
+  background-color: var(--nogizaka-purple-medium) !important;
+}
+
+
+
+/* 各ページの横幅 */
+.form-login {
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+}
+
+.form-register {
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+}
+
+.btn-width {
+  min-width: 200px;
+}
+
+.form-menu {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.form-quiz {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.form-logout {
+  width: 100%;
+  max-width: 350px;
+  margin: auto;
+}
+
+.form-table {
+  width: 100%;
+  max-width: 800px;
+  margin: auto
+}
+
+.form-edit {
+  width: 100%;
+  max-width: 700px;
+  margin: auto
+}
+
+
+
+.btn-check:disabled+.btn,
+.btn-check[disabled]+.btn {
+  opacity: 1 !important;
+  cursor: default;
+}
+
+.form-check-input:disabled,
+.form-check-input:disabled~.form-check-label {
+  opacity: 1 !important;
+}
+
+/* ==========================================
+   ルール1：選択されたとき（checked / active）
+   通常は【乃木色・白文字】
+   ========================================= */
+.btn-check:checked + .btn,
+.page-item.active .page-link {
+  background-color: #702f8a !important; /* 乃木色 */
+  border-color: #702f8a !important;
+  color: #ffffff !important;             /* 文字：白 */
+  box-shadow: none !important;           /* 青モヤ消去 */
+  pointer-events: auto !important;       /* ★disabledでもマウスイベントを有効にする */
+}
+
+/* ★修正：選択されたところ（disabled状態のページも含めて）にマウスが乗ったら文字を黄色にする */
+.btn-check:checked + .btn:hover,
+.page-item.active .page-link:hover,
+.page-item.active .page-link[disabled]:hover {
+  background-color: #702f8a !important; 
+  border-color: #702f8a !important;
+  color: #ffc107 !important;             /* 文字：黄色 */
+  box-shadow: none !important;           
+}
+
+
+/* ==========================================
+   ルール2：未選択のときにホバーしたら【薄い乃木色・文字は黒】
+   ========================================= */
+.btn-check:not(:checked) + .btn:hover,
+.page-link:not(.disabled):not(:active):hover {
+  background-color: #bc8bc4 !important; /* 薄い乃木色 */
+  border-color: #d8c2e3 !important;     /* 薄い乃木色の枠線 */
+  color: #212529 !important;             /* 文字：黒 */
+  box-shadow: none !important;           /* 青モヤ消去 */
+}
+
+
+/* ==========================================
+   ルール3：共通エフェクト・初期の影の完全一括リセット
+   ========================================= */
+.btn-check + .btn:focus, .btn-check:focus + .btn,
+.page-link:focus, .page-link:active {
+  box-shadow: none !important;           /* クリックした瞬間の青モヤを完全消去 */
+}
+
+/* ページネーション全体の基本文字色（通常時）を黒に固定 */
+.page-link {
+  color: #212529;
+}
+
+/* ページネーション（.page-link）の枠線をすべての状態でセカンダリー（グレー）に固定 */
+/* ページネーション（.page-link）の枠線を【すべての状態 ＋ disabled時】もセカンダリーに固定 */
+.page-link {
+  --bs-pagination-border-color: #6c757d !important;
+  --bs-pagination-hover-border-color: #6c757d !important;
+  --bs-pagination-active-border-color: #6c757d !important;
+  
+  /* ★これをついか：disabled（無効化）になったときの枠線もセカンダリー（グレー）にする */
+  --bs-pagination-disabled-border-color: #6c757d !important;
+}
+
+
+/* ==========================================
+   トグルスイッチ（.form-switch）専用のルール定義
+   ========================================== */
+
+/* 1. 通常時（未選択）：枠線をセカンダリー（グレー）にし、青モヤを消去 */
+.form-switch .form-check-input {
+  border-color: #6c757d !important;
+  box-shadow: none !important;
+}
+
+/* 2. 未選択の状態で【フォーカス・ホバー】したとき：背景を薄い乃木色に */
+.form-switch .form-check-input:not(:checked):focus,
+.form-switch .form-check-input:not(:checked):hover {
+  background-color: #f6f0fa !important;
+  border-color: #6c757d !important;
+  box-shadow: none !important;
+}
+
+/* 3. 【選択（ON）されたとき】：青地だった背景部分だけを乃木色にする（白〇はそのまま残る） */
+.form-switch .form-check-input:checked,
+.form-switch .form-check-input:checked:focus,
+.form-switch .form-check-input:checked:hover {
+  background-color: #702f8a !important; /* もともと青（#0d6efd）だった背景を乃木色に */
+  border-color: #6c757d !important;     /* 枠線はセカンダリー（グレー） */
+  box-shadow: none !important;           /* 青モヤ消去 */
+}
+
+

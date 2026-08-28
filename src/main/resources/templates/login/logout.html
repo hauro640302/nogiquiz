@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout (~{::body})}">
+
+  <body>
+
+    <div class="container form-logout text-center">
+
+      <div>
+        <h2 th:text="#{logout.title}"></h2>
+      </div>
+
+      <div class="mt-5" th:object="${logoutForm}">
+        <th:block th:if="*{name != null}">
+          <div>
+            <h5 th:text="#{logout.name(*{name})}"></h5>
+          </div>
+        </th:block>
+
+        <div class="mt-4">
+          <h5 th:text="#{logout.time(*{hours}, *{minutes}, *{seconds})}"></h5>
+        </div>
+      </div>
+
+      <form method="post" th:action="@{/login/logout}" id="logout"></form>
+      
+      <script>
+        setTimeout(() => {document.getElementById('logout').submit()}, 5 * 1000);
+      </script>
+
+    </div>
+  </body>
+
+</html>
