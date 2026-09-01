@@ -13,9 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 public class BloodtypeService {
 
   private final BloodtypeRepository repository;
-  
+
   public List<BloodtypeDto> getBloodtypeList() {
     return repository.findAll();
   }
-  
+
 }

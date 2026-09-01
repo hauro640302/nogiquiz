@@ -11,7 +11,7 @@ public record MemberDto(
     Long prefectureId,
     Long generationId,
     Boolean isActive) {
-  
+
   public static MemberDto fromForm(MemberForm form) {
     return new MemberDto(
         form.id(),

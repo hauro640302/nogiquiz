@@ -38,8 +38,10 @@
                            class="btn-check" />
                     <label th:text="${choice}" 
                            th:for="'choice-' + ${i.index} + '-' + ${j.index}"
-                           class="btn btn-outline-secondary btn-sm w-100 h-100 border-0 d-flex align-items-center justify-content-center"
-                           th:classappend="${quizForm.hasAnswer && choice == question.correct} ? 'text-danger fw-bold' : 'text-dark'"
+                           class="btn btn-outline-secondary btn-sm w-100 h-100 border-0 d-flex
+                                 align-items-center justify-content-center"
+                           th:classappend="${quizForm.hasAnswer && choice == question.correct} ?
+                                          'text-danger fw-bold' : 'text-dark'"
                            style="border-radius: 0; min-height: 38px;">
                     </label>
                   </td>
@@ -52,7 +54,8 @@
           <th:object th:if="not *{hasAnswer}">
             <div class="mt-5 text-center">
               <th:block
-                th:replace="~{fragments/nogiButton::template('post', '/quiz/answer', #{quiz.scoring}, true)}">
+                th:replace="
+                    ~{fragments/nogiButton::template('post', '/quiz/answer', #{quiz.scoring}, true)}">
               </th:block>
             </div>
           </th:object>
@@ -64,7 +67,8 @@
         <div class="mt-5 text-center">
           <form>
             <th:block
-              th:replace="~{fragments/nogiButton::template('post', '/quiz/retry', #{quiz.retry}, true)}">
+              th:replace="
+                  ~{fragments/nogiButton::template('post', '/quiz/retry', #{quiz.retry}, true)}">
             </th:block>
           </form>
         </div>
@@ -73,7 +77,8 @@
       <div class="mt-5">
         <form>
           <th:block
-            th:replace="~{fragments/nogiButton::template('post', '/quiz/exit', #{quiz.exit}, true)}">
+            th:replace="
+                ~{fragments/nogiButton::template('post', '/quiz/exit', #{quiz.exit}, true)}">
           </th:block>
         </form>
       </div>

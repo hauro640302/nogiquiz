@@ -57,7 +57,14 @@ public class MemberDetailRepository extends BaseRepository {
   }
 
   public int count() {
-    return count(baseSql, baseBinder);
+    final String sql = """
+        SELECT count(*)
+        FROM m_member m
+        INNER JOIN m_prefecture p ON m.prefecture_id = p.id
+        INNER JOIN m_bloodtype b ON m.bloodtype_id = b.id
+        INNER JOIN m_generation g ON m.generation_id = g.id
+        """;
+    return count(sql, baseBinder);
   }
 
   public List<MemberDetailDto> findAllByPage(int page, int size) {

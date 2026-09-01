@@ -26,6 +26,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     String username = authentication.getName();
     repository.updatePlayerLoggedinAt(username,
         LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+    
     response.sendRedirect("/menu");
   }
 

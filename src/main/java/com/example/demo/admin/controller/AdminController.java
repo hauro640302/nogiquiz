@@ -53,7 +53,7 @@ public class AdminController {
     model.addAttribute("form", form);
     model.addAttribute("pageable", md);
 
-    return "/admin/table";
+    return "admin/table";
   }
 
   @PostMapping("/admin/page")
@@ -70,20 +70,21 @@ public class AdminController {
 
     MemberForm targetForm = (MemberForm) model.getAttribute("targetForm");
     Long id = (Long) model.getAttribute("id");
-    MemberDto member = id == null || id == 0L ? memberService.getNewMember() : memberService.getMember(id);
+    MemberDto member =
+        id == null || id == 0L ? memberService.getNewMember() : memberService.getMember(id);
     MemberForm form = MemberForm.fromDto(member);
-    
+
     List<BloodtypeDto> bloodtypeList = bloodtypeService.getBloodtypeList();
     List<PrefectureDto> prefectureList = prefectureService.getPrefectureList();
     List<GenerationDto> generationList = generationService.getGenerationList();
-    
+
     model.addAttribute("form", targetForm == null ? form : targetForm);
     model.addAttribute("originalForm", form);
     model.addAttribute("bloodtypeList", bloodtypeList);
     model.addAttribute("prefectureList", prefectureList);
     model.addAttribute("generationList", generationList);
 
-    return "/admin/edit";
+    return "admin/edit";
   }
 
   // メンバ追加
@@ -138,7 +139,7 @@ public class AdminController {
     }
     return "redirect:/admin";
   }
-  
+
   @PostMapping("/admin/edit/back")
   public String postEditBack() {
 

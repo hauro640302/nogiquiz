@@ -1,8 +1,12 @@
 package com.example.demo.login.controller;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Locale;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoginController {
 
   private final PlayerService service;
+  private final MessageSource messageSource;
 
   // ログイン画面
   @GetMapping({
@@ -37,10 +42,6 @@ public class LoginController {
     AuthenticationException ex =
         (AuthenticationException) session.getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
 
-    if (ex != null) { 
-    log.info("#### exception ex: " + ex.toString());
-    }
-    
     boolean hasLoginError = ex != null;
     model.addAttribute("hasLoginError", hasLoginError);
 
@@ -92,8 +93,11 @@ public class LoginController {
       return "redirect:/login/register";
     }
 
+    Locale locale = LocaleContextHolder.getLocale();
+    String message = messageSource.getMessage("logincontroller.postregister",
+        List.of(playerForm.getName()).toArray(), locale);
     playerForm.setResult(true);
-    playerForm.setMessage("登録OK");
+    playerForm.setMessage(message);
     redirectAttributes.addFlashAttribute("playerForm", playerForm);
 
     return "redirect:/login/register";

@@ -32,8 +32,8 @@
               <td>
                 <div class="d-flex gap-2">
                   <form class="w-100">
-                    <th:block
-                      th:replace="~{fragments/nogiButton::template('post', @{/admin/edit(id=${member.id})}, #{admin.edit}, false)}">
+                    <th:block th:replace="~{fragments/nogiButton::template(
+                          'post', @{/admin/edit(id=${member.id})}, #{admin.edit}, false)}">
                     </th:block>
                   </form>
                 </div>
@@ -45,14 +45,14 @@
       </div>
 
       <div class="mt-5">
-        <div th:replace="~{fragments/pagination::pagination ('/admin/page', ${pageable})}">
-        </div>
+        <th:block th:replace="~{fragments/pagination::pagination ('/admin/page', ${pageable})}">
+        </th:block>
       </div>
 
       <div class="mt-5">
         <form>
-          <th:block
-            th:replace="~{fragments/nogiButton::template('post', '/admin/add', #{admin.add}, true)}">
+          <th:block th:replace="~{fragments/nogiButton::template(
+                'post', '/admin/add', #{admin.add}, true)}">
           </th:block>
         </form>
       </div>

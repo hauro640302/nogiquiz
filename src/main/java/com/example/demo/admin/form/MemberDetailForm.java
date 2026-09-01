@@ -12,7 +12,13 @@ public record MemberDetailForm(
     String active) {
 
   public static MemberDetailForm fromDto(MemberDetailDto dto) {
-    return new MemberDetailForm(dto.id(), dto.name(), dto.birthdayYMD(), dto.bloodtype(),
-        dto.prefecture(), dto.generation(), dto.activeName());
+    return new MemberDetailForm(
+        dto.id(),
+        dto.name(),
+        dto.birthdayYMD(),
+        dto.bloodtype(),
+        dto.prefecture(),
+        dto.generation(),
+        dto.activeName());
   }
 }

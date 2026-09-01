@@ -11,20 +11,26 @@
         <form th:object="${playerForm}">
 
           <div id="error-message" th:if="*{!#strings.isEmpty(message)}">
-            <t6 th:text="*{message}" th:classappend="*{result == false} ? 'text-danger'"></t6>
+            <h5 th:text="*{message}" th:classappend="*{result == false} ? 'text-danger'"></h5>
           </div>
 
           <div class="mt-4">
             <label for="pn" th:text="#{common.name}">Name</label>
-            <input type="text" th:field="*{name}" id="pn" class="form-control login-input"
-              th:errorclass="is-invalid" />
+            <input type="text" 
+                   th:field="*{name}" 
+                   id="pn" 
+                   class="form-control login-input"
+                   th:errorclass="is-invalid" />
             <div th:errors="*{name}" class="invalid-feedback"></div>
           </div>
 
           <div class="mt-4">
             <label for="pw" th:text="#{common.password}">Password</label>
-            <input type="password" th:field="*{password}" id="pw" class="form-control login-input"
-              th:errorclass="is-invalid" />
+            <input type="password" 
+                   th:field="*{password}" 
+                   id="pw" 
+                   class="form-control login-input"
+                   th:errorclass="is-invalid" />
             <div th:errors="*{password}" class="invalid-feedback"></div>
           </div>
 

@@ -153,13 +153,8 @@ INSERT INTO m_player (name, password, loggedin_at, role) VALUES
 ('test', '$2a$10$5C8J26MTGzNAHBavAcSg1.1MP/dfuLhgZjail/VztPTYYL7hXk/qa', null, 'GENERAL');
 
 INSERT INTO t_score (is_active, category_id, score, player_id, played_at) VALUES
-
-
 (false, 1,  50, 2, '2026-08-01 04:01:00'),
 
-(true, 1,  10, 2, '2026-08-01 12:01:00'),
-(true, 1,  10, 2, '2026-08-01 12:02:00'),
-(true, 1,  10, 2, '2026-08-01 12:03:00'),
 (true, 1,  10, 2, '2026-08-01 00:01:00'),
 (true, 1,  10, 2, '2026-08-01 00:02:00'),
 (true, 1,  10, 2, '2026-08-01 00:03:00'),
@@ -197,8 +192,8 @@ INSERT INTO t_score (is_active, category_id, score, player_id, played_at) VALUES
 (true, 1,  90, 2, '2026-08-01 08:03:00'),
 
 (true, 1, 100, 2, '2026-08-01 09:01:00'),
-(true, 1, 100, 2, '2026-08-01 09:02:00'),
-(true, 1, 100, 2, '2026-08-01 09:03:00');
+(true, 1, 100, 2, '2026-08-01 09:02:00');
+
 
 
 

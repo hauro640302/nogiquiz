@@ -38,8 +38,6 @@ public class QuizController {
   @GetMapping("/quiz")
   public String getQuiz(@ModelAttribute QuizForm quizForm, Model model) {
 
-    log.info("#### form: " + quizForm.toString());
-
     if (quizForm.getQuestions() == null) {
       // 設問の場合
       List<QuestionDto> qs = service.makeQuiz(
@@ -74,6 +72,7 @@ public class QuizController {
     // ハイスコアであればDBに書く
     HighScoreDto hs = new HighScoreDto(score, user.getUsername(), LocalDateTime.now());
     scoreService.updateScore(sessionData.getCategory(), sessionData.isActive(), hs);
+    
     return "redirect:/quiz";
   }
 

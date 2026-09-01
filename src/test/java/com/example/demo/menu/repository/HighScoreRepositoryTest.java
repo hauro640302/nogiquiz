@@ -23,7 +23,7 @@ public class HighScoreRepositoryTest {
   public void test1() {
     List<HighScoreDto> result = repository.getHighScore("出身都道府県", true);
     log.info("TTTT result: " + result);
-    assertThat(result.size()).isEqualTo(33);
+    assertThat(result.size()).isEqualTo(29);
   }
 
   @Test
@@ -37,7 +37,7 @@ public class HighScoreRepositoryTest {
   public void test3() {
     List<HighScoreDto> result = repository.getHighScoreByPage("出身都道府県", true, 3, 10);
     log.info("TTTT result: " + result);
-    assertThat(result.size()).isEqualTo(3);
+    assertThat(result.size()).isEqualTo(0);
   }
   
   @Test
@@ -51,6 +51,6 @@ public class HighScoreRepositoryTest {
   public void test5() {
     int result = repository.count("出身都道府県", true);
     log.info("TTTT result: " + result);
-    assertThat(result).isEqualTo(33);
+    assertThat(result).isEqualTo(29);
   }
 }

@@ -5,5 +5,4 @@ public record LogoutForm(
     long hours,
     int minutes,
     int seconds) {
-
 }

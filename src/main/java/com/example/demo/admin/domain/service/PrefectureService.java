@@ -11,11 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class PrefectureService {
-  
+
   private final PrefectureRepository repository;
-  
+
   public List<PrefectureDto> getPrefectureList() {
     return repository.findAll();
   }
-  
+
 }

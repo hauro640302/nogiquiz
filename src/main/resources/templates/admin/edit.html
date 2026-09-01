@@ -10,6 +10,8 @@
         <form method="post" th:action="@{/admin/edit/commit}" th:object="${form}">
           <input type="hidden" th:field="*{id}" />
           <table class="table table-striped table-bordered table-hover table-sm">
+
+            <!-- fragment -->
             <th:block th:remove="all">
               <tr th:fragment="item(id, cVal, oVal, text, type, list)">
                 <th class="table-light w-25 align-middle" scope="row">
@@ -43,23 +45,27 @@
               </tr>
             </th:block>
 
-            <tr
-              th:replace="~{::item('name', *{name}, ${originalForm.name}, #{admin.member.name}, 'text', null)}">
+            <tr th:replace="
+                ~{::item('name', *{name}, ${originalForm.name}, #{admin.member.name}, 'text', null)}">
             </tr>
-            <tr
-              th:replace="~{::item('birthday', *{birthday}, ${originalForm.birthday}, #{admin.member.birthday}, 'date', null)}">
+            <tr th:replace="
+                ~{::item('birthday', *{birthday}, ${originalForm.birthday}, #{admin.member.birthday}, 
+                'date', null)}">
             </tr>
-            <tr
-              th:replace="~{::item('bloodtypeId', *{bloodtypeId}, ${originalForm.bloodtypeId}, #{admin.member.bloodtype}, null, ${bloodtypeList})}">
+            <tr th:replace="
+                ~{::item('bloodtypeId', *{bloodtypeId}, ${originalForm.bloodtypeId}, #{admin.member.bloodtype}, 
+                null, ${bloodtypeList})}">
             </tr>
-            <tr
-              th:replace="~{::item('prefectureId', *{prefectureId}, ${originalForm.prefectureId}, #{admin.member.prefecture}, null, ${prefectureList})}">
+            <tr th:replace="
+                ~{::item('prefectureId', *{prefectureId}, ${originalForm.prefectureId}, #{admin.member.prefecture},
+                null, ${prefectureList})}">
             </tr>
-            <tr
-              th:replace="~{::item('generationId', *{generationId}, ${originalForm.generationId}, #{admin.member.generation}, null, ${generationList})}">
+            <tr th:replace="
+                ~{::item('generationId', *{generationId}, ${originalForm.generationId}, #{admin.member.generation},
+                null, ${generationList})}">
             </tr>
-            <tr
-              th:replace="~{::item('active', *{active}, ${originalForm.active}, #{admin.member.active}, null, null)}">
+            <tr th:replace="
+                ~{::item('active', *{active}, ${originalForm.active}, #{admin.member.active}, null, null)}">
             </tr>
           </table>
 

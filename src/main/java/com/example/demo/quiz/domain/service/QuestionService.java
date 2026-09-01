@@ -77,6 +77,7 @@ public class QuestionService {
     return choices;
   }
 
+  // 採点
   public int scoring(List<String> corrects, List<String> answers) {
     return (answers == null || corrects == null)
         ? 0

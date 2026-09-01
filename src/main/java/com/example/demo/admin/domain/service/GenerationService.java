@@ -11,12 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class GenerationService {
-  
+
   private final GenerationRepository repository;
-  
+
   public List<GenerationDto> getGenerationList() {
     return repository.findAll();
   }
-  
+
 
 }

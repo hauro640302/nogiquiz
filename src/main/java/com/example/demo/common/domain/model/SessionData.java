@@ -11,7 +11,7 @@ import lombok.Data;
 public class SessionData {
   private String category;
   private boolean isActive;
-  
+
   public void updateFromMenuForm(MenuForm form) {
     this.setCategory(form.category());
     this.setActive(!form.includingGraduates());

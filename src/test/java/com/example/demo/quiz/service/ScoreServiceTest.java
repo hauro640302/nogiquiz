@@ -27,7 +27,7 @@ public class ScoreServiceTest {
     HighScoreDto hs = new HighScoreDto(70, "superuser", LocalDateTime.now());
     service.updateScore("出身都道府県", true, hs);
     List<ScoreDto> result = service.getScore("出身都道府県", true);
-    assertThat(result.get(9).playerId()).isEqualTo(1);
+    assertThat(result.get(8).playerId()).isEqualTo(1);
   }
   
   @Test

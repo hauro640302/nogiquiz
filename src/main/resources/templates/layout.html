@@ -38,14 +38,16 @@
           <div sec:authorize="hasAuthority('SUPERUSER')">
             <form>
               <th:block
-                th:replace="~{fragments/nogiButton::template('get', '/admin', #{layout.header.admin}, false)}">
+                th:replace="
+                ~{fragments/nogiButton::template('get', '/admin', #{layout.header.admin}, false)}">
               </th:block>
             </form>
           </div>
           <!-- ログアウトボタン -->
           <form>
             <th:block
-              th:replace="~{fragments/nogiButton::template('post', '/login/logout/pre', #{layout.header.logout}, false)}">
+              th:replace="
+              ~{fragments/nogiButton::template('post', '/login/logout/pre', #{layout.header.logout}, false)}">
             </th:block>
           </form>
         </div>

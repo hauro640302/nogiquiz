@@ -42,7 +42,7 @@ public class HighScoreServiceTest {
     Pageable pageable = PageRequest.of(2, 10);
     Page<HighScoreDto> result = service.getHighScore("出身都道府県", true, pageable);
     log.info("TTTT result: " + result);
-    assertThat(result.getContent().size()).isEqualTo(10);
+    assertThat(result.getContent().size()).isEqualTo(9);
   }
   
   @Test
@@ -50,6 +50,6 @@ public class HighScoreServiceTest {
     Pageable pageable = PageRequest.of(3, 10);
     Page<HighScoreDto> result = service.getHighScore("出身都道府県", true, pageable);
     log.info("TTTT result: " + result);
-    assertThat(result.getContent().size()).isEqualTo(3);
+    assertThat(result.getContent().size()).isEqualTo(0);
   }
 }
